@@ -40,7 +40,6 @@ struct _DigraphHeader {
 //   It should only return if a valid digraph is actually created.
 //
 Digraph* DigraphCreate(uint numVertices, uint maxEdges) {
-  // COMPLETE...
   Digraph* g = (Digraph*)malloc(sizeof(Digraph));
   if(g==NULL){
     abort();
@@ -68,7 +67,6 @@ Digraph* DigraphCreate(uint numVertices, uint maxEdges) {
 
 
 void DigraphDestroy(Digraph** p) {
-  // COMPLETE...
   assert(*p != NULL);
   Digraph *g = *p;
 
@@ -96,7 +94,6 @@ void DigraphDestroy(Digraph** p) {
 Digraph* DigraphLoadFile(const char *fname) {
   assert(fname != NULL);
 
-  // COMPLETE...
   FILE *file = fopen(fname, "r");
   if (file == NULL) {
     printf("Erro\n");
@@ -149,7 +146,6 @@ uint DigraphGetNumVertices(const Digraph* g) { return g->numVertices; }
 uint DigraphGetNumEdges(const Digraph* g) { return g->numEdges; }
 
 uint DigraphGetMaxOutDegree(const Digraph* g) {
-  // COMPLETE...
   uint maxOutDegree = 0;
   for (uint v = 0; v < g->numVertices; v++) {
     if (g->outDeg[v] > maxOutDegree) {
@@ -160,7 +156,6 @@ uint DigraphGetMaxOutDegree(const Digraph* g) {
 }//maior outdegree dos vertices
 
 uint DigraphGetMaxInDegree(const Digraph* g) {
-  // COMPLETE...
   uint maxInDegree = 0;
   for (uint v = 0; v < g->numVertices; v++) {
     if (g->inDeg[v] > maxInDegree) {
@@ -190,7 +185,6 @@ int DigraphAddEdge(Digraph* g, uint v, uint w) {
   assert(v < g->numVertices);
   assert(w < g->numVertices);
 
-  // COMPLETE...
   if (g->numEdges == g->maxEdges) {
     return 0; //recusado
   }
@@ -219,7 +213,7 @@ int DigraphAddEdge(Digraph* g, uint v, uint w) {
 int DigraphHasEdge(Digraph* g, uint v, uint w) {
   assert(v < g->numVertices);
   assert(w < g->numVertices);
-  // COMPLETE...
+
   for (uint i = g->adjPos[v]; i < g->adjPos[v + 1]; i++) {
     if (g->adjVert[i] == w) {
       return 1; //haedge
@@ -235,7 +229,6 @@ int DigraphRemoveEdge(Digraph* g, uint v, uint w) {
   assert(v < g->numVertices);
   assert(w < g->numVertices);
 
-  // COMPLETE...
   for (uint i = g->adjPos[v]; i < g->adjPos[v] + g->outDeg[v]; i++) {
     if (g->adjVert[i] == w) {
       for (uint j = i; j < g->adjPos[v] + g->outDeg[v] - 1; j++) {
@@ -285,7 +278,6 @@ uint* DigraphGetAdjacentsTo(const Digraph* g, uint v) {
 
 int DigraphCheckInvariants(const Digraph* g) {
   assert(g != NULL);
-  // COMPLETE...
   if (g->numEdges > g->maxEdges) {
     return 0; // rip edges
   }
@@ -412,7 +404,6 @@ void auxiliar(const Digraph *g, uint v, int *visited) {
 // MANDATORY: Use repeated depth-first searches.
 int DigraphIsStronglyConnected(const Digraph* g) {
   assert(g != NULL);
-  // COMPLETE...
   int *visited = malloc(g->numVertices * sizeof(int));
   if (visited == NULL) {
     printf("Erro\n");
